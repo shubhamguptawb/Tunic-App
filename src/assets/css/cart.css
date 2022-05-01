@@ -1,0 +1,126 @@
+.store {
+  height: 140vh;
+  width: 100vw;
+  top: 40px;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.store-wrapper {
+  box-shadow: 0px 0px 10px 600px #000000b5;
+  height: 60%;
+  width: 60%;
+  background-color: white;
+}
+.str-cls-btn {
+  cursor: pointer;
+  width: 95%;
+  height: 10%;
+  font-size: 16px;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.str-cls-btn span {
+  height: 100%;
+  width: 20%;
+  background-color: orange;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.hr-mid {
+  height: 70%;
+  width: 0px;
+  margin: 20px;
+}
+
+.left-container-store {
+  overflow-y: scroll;
+  height: 87%;
+  width: 68%;
+}
+
+.left-container-store::-webkit-scrollbar {
+  visibility: hidden;
+}
+.right-container-store {
+  height: 100%;
+  width: 29%;
+  display: flex;
+  flex-direction: column;
+}
+
+.str-prdct {
+  margin-top: 20px;
+  display: flex;
+  margin-left: 2%;
+  height: 120px;
+  width: 96%;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px 2px rgb(214, 212, 212);
+}
+.str-img-cnt {
+  height: 100%;
+  width: 30%;
+  background-color: pink;
+}
+.str-det-cnt {
+  padding-left: 10px;
+  height: 100%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+.str-cls-cnt {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  font-weight: 700;
+  width: 9%;
+}
+
+@media screen and (max-width: 900px) and (min-width: 300px) {
+  .store {
+    height: 160vh;
+    align-items: flex-start;
+  }
+  .store-wrapper {
+    margin-top: 40px;
+    width: 80%;
+  }
+
+  .str-prdct {
+    height: 110px;
+  }
+  .str-cls-btn {
+    height: 5%;
+  }
+  .store-details-wrapper {
+    flex-direction: column;
+  }
+  .left-container-store {
+    overflow-y: scroll;
+    width: 100%;
+    height: 50%;
+  }
+  .hr-mid {
+    height: 0px;
+    width: 80%;
+  }
+  .right-container-store {
+    padding-left: 10px;
+    width: 100%;
+    height: 50%;
+  }
+}

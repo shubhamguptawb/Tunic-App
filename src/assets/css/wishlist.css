@@ -1,0 +1,3 @@
+.wishlist-wrapper::-webkit-scrollbar {
+  visibility: hidden;
+}

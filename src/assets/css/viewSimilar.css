@@ -1,0 +1,124 @@
+.view-similar {
+  height: 100vh;
+  width: 25vw;
+  box-shadow: 0px -100px 50px gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 1px;
+  right: 0vw;
+  background-color: white;
+  z-index: 4;
+  overflow-y: scroll;
+  animation-name: example;
+  animation-duration: 1s;
+}
+
+@keyframes example {
+  from {
+    right: -80vw;
+  }
+  to {
+    right: 0vw;
+  }
+}
+
+.view-similar::-webkit-scrollbar {
+  visibility: hidden;
+}
+.prod-vs {
+  display: flex;
+  margin-top: 20px;
+  height: 120px;
+  width: 94%;
+}
+
+.vs-left-container {
+  height: 100%;
+  width: 40%;
+  background: skyblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.vs-right-container {
+  height: 100%;
+  width: 58%;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.vs-right-container h3 {
+  height: 10%;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgb(100, 99, 99);
+}
+
+.vs-right-container h5 {
+  height: 30%;
+  width: 100%;
+  font-family: poppins, sans-serif;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: black;
+}
+
+.vs-price {
+  margin-top: 30px;
+  height: 10%;
+  width: 100%;
+}
+.price-a {
+  height: 100%;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: poppins, sans-serif;
+  color: black;
+}
+
+.price-b {
+  margin-left: 10px;
+  height: 100%;
+  font-size: 8px;
+  text-decoration: line-through;
+  font-weight: 500;
+  font-family: poppins, sans-serif;
+  color: black;
+}
+
+.price-c {
+  margin-left: 10px;
+  height: 100%;
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: poppins, sans-serif;
+  color: orange;
+}
+
+.vs-size {
+  margin-top: 20px;
+  height: 10%;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.vs-size #text {
+  border: solid 2px orange;
+}
+
+@media screen and (max-width: 900px) and (min-width: 300px) {
+  .view-similar {
+    width: 70vw;
+  }
+}
