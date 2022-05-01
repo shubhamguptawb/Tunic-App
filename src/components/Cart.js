@@ -106,7 +106,7 @@ const Cart = (props) => {
                         style={{
                           height: "20%",
                           width: "100%",
-                          marginTop: "20px",
+                          marginTop: "40px",
                           display: "flex",
                           alignItems: "center",
                         }}
@@ -119,7 +119,7 @@ const Cart = (props) => {
                             padding: "4px 0px",
                             height: "60%",
                             fontSize: "12px",
-                            width: "40%",
+                            width: "50%",
                             justifyContent: "center",
                             backgroundColor: "whitesmoke",
                           }}
@@ -167,7 +167,6 @@ const Cart = (props) => {
                               height: "100%",
                               display: "flex",
                               cursor: "pointer",
-
                               alignItems: "center",
                               justifyContent: "center",
                               border: "2px solid orange",
@@ -219,7 +218,6 @@ const Cart = (props) => {
                             height: "100%",
                             width: "30%",
                             display: "flex",
-
                             alignItems: "center",
                             fontSize: "10px",
                             color: "orange",
