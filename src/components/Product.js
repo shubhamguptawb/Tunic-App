@@ -7,6 +7,8 @@ import { fetchProductFromid } from "../utilities";
 import { addProductToWishlist, removeProductFromWishlist } from "../actions";
 function Product(props) {
   let [isWishlist, setIsWishlist] = useState(false);
+
+  //function to map wishlist on page update
   useEffect(() => {
     props.wishlist.map((elem) => {
       if (props.data[0].productId === elem.productId) {
@@ -14,17 +16,23 @@ function Product(props) {
       }
     });
   }, []);
+
+  //function to add item to wishlist
   const addToWishList = (id) => {
     let a = { id: id };
     let item = fetchProductFromid(a)[0];
     props.addProductToWishlist(item);
   };
 
+  //function to remove from wishlist
+
   const removeWishList = (id) => {
     let a = { id: id };
     let item = fetchProductFromid(a)[0];
     props.removeProductFromWishlist(item);
   };
+
+  //function to add to wishlist /remove from wishlist
 
   const handleSetWishlist = (id) => {
     if (isWishlist === true) {

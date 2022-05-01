@@ -309,7 +309,7 @@
   .m-gender-filter {
     position: sticky;
     visibility: visible;
-    margin-top: 60px;
+    margin-top: 74px;
     margin-bottom: 10px;
     height: 120px;
     width: 100%;
@@ -444,7 +444,7 @@
     z-index: 1;
     top: 0;
     width: 100%;
-    padding-top: 10px;
+    margin-top: 30px;
     height: 40px;
     justify-content: space-between;
     visibility: visible;
@@ -453,8 +453,8 @@
   .m-filter {
     font-family: poppins, sans-serif;
     font-size: 14px;
-    margin-left: 10px;
-    width: 25%;
+    margin-left: 2%;
+    width: 100px;
     border-radius: 25px;
     height: 80%;
     display: flex;
@@ -471,6 +471,7 @@
     color: white;
   }
   .sort-filter-btn {
+    width: 100px;
     margin-right: 10px;
     border-radius: 15px;
     background-color: orange;
@@ -497,14 +498,14 @@
   }
   .sort-menu-d {
     z-index: 12;
-    left: 6vw;
+    width: 100vw;
+    left: 2px;
     border-radius: 10px 10px 0px 0px;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    top: 33vh;
-    width: 85%;
+    position: fixed;
+    top: 48%;
     height: 50vh;
     animation-name: menu;
     animation-duration: 0.5s;
@@ -534,7 +535,7 @@
       top: 89vh;
     }
     to {
-      top: 33vh;
+      top: 48%;
     }
   }
   @keyframes searchbar {

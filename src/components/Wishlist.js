@@ -9,6 +9,7 @@ function Wishlist(props) {
   let [similar, showSimilar] = useState(false);
   let [prodId, setProdId] = useState();
 
+  //function to show/hide similar items
   const handleshowSimilar = (id) => {
     setProdId((prodId = id));
     showSimilar((prev) => !prev);

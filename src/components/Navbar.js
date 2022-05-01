@@ -11,16 +11,17 @@ function Navbar(props) {
   let [value, setValue] = useState("");
   let [showCart, setShowCart] = useState(false);
   let count = 0;
-
+  //function to implement enter in search
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleSearchQuery();
     }
   };
+  //function to control state of search bar
   const handleChange = (event) => {
     setValue((value = event.target.value));
   };
-
+  //function to submit search query
   const handleSearchQuery = () => {
     if (value === " " || value === "") {
       return;
@@ -28,7 +29,7 @@ function Navbar(props) {
     let output = search(value, fetchProducts());
     props.data(output);
   };
-
+  //function to show/hide cart
   const handleShowCart = () => {
     setShowCart((prev) => !prev);
   };

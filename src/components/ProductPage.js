@@ -25,9 +25,12 @@ function ProductPage(props) {
     src: "",
   });
 
+  //function to impelement view image on click
   const handleViewImage = (value, src) => {
     setViewImg((viewImg = { value: value, src: src }));
   };
+
+  // /function to add items to cart
   const addToCart = (item) => {
     if (size == 0) {
       toast.error("Please Select a Size");
@@ -48,8 +51,9 @@ function ProductPage(props) {
     }
   };
 
+  //set size of the item
+
   const handleChange = (event) => {
-    //set size of the item
     setSize((size = event.target.value));
   };
 

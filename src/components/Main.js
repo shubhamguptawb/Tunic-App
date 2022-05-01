@@ -374,8 +374,7 @@ function Main(props) {
               setActiveFilter((activeFilter = []));
               setFilterState((filterState = props.data[0]));
               setFilterSearch((filterSearch = false));
-
-              props.data[1](fetchProducts());
+              props.data[1](fetchProducts(), "All");
             }}
           >
             View All
