@@ -101,6 +101,7 @@
 
 .vs-btn {
   position: absolute;
+  border: solid 1px rgb(183, 181, 181);
   background: white;
   height: 20px;
   width: 70%;

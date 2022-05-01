@@ -5,7 +5,7 @@ import searchIco from "../assets/images/search.svg";
 import close from "../assets/images/close.svg";
 import Cart from "./Cart";
 import { connect } from "react-redux";
-import { fetchProducts, search } from "../utilities";
+import { fetchProducts, search, sortByGender } from "../utilities";
 
 function Navbar(props) {
   let [value, setValue] = useState("");
@@ -39,6 +39,15 @@ function Navbar(props) {
     });
   }
 
+  //Filter By Gender
+  let [gender, setGender] = useState();
+
+  const handleGenderSearch = (input_gender) => {
+    setGender((gender = input_gender));
+    let data = sortByGender(gender, fetchProducts());
+    props.data(data, input_gender);
+  };
+
   return (
     <>
       <div className="logo-header">
@@ -64,12 +73,46 @@ function Navbar(props) {
 
         <div className="header-menu">
           <ul className="header-menu-ul">
-            <li>Men</li>
-            <li>Women</li>
-            <li>Kids</li>
-            <li>Home</li>
+            <li
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                handleGenderSearch("Men");
+              }}
+            >
+              Men
+            </li>
+            <li
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                handleGenderSearch("Women");
+              }}
+            >
+              Women
+            </li>
+            <li
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                handleGenderSearch("Boys");
+              }}
+            >
+              Boys
+            </li>
+            <li
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                handleGenderSearch("Girls");
+              }}
+            >
+              Girls
+            </li>
             <li>Beauty</li>
-            <li>Studio</li>
+            <li
+              onClick={() => {
+                handleGenderSearch();
+              }}
+            >
+              Studio
+            </li>
           </ul>
         </div>
 

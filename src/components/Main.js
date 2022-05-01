@@ -15,20 +15,21 @@ import {
 } from "../utilities";
 
 function Main(props) {
-  let [loading, setLoading] = useState(false);
-  let [sortValue, setSortValue] = useState("new");
-  let [sortDisplay, setSortDisplay] = useState("New Arrivals");
-  let [showSortMenuD, setShowSortMenuD] = useState(false);
-  let [view, setView] = useState(false);
-  let [prodId, setProdId] = useState();
-  let [msearch, setMsearch] = useState(false);
+  let [loading, setLoading] = useState(false); //loading state
+  let [sortValue, setSortValue] = useState("new"); //sort value state
+  let [sortDisplay, setSortDisplay] = useState("New Arrivals"); //state to control sort menu current value
+  let [showSortMenuD, setShowSortMenuD] = useState(false); //state to control sort menu display on/off
+  let [view, setView] = useState(false); //state to control view similar display on/off
+  let [prodId, setProdId] = useState(); //state for storing id of product for  similar products
+  let [msearch, setMsearch] = useState(false); //state for value of search *Phone view*
   //----------------------------------------------------------->
 
   // search query
 
-  let [value, setValue] = useState("");
+  let [value, setValue] = useState(""); //state for search value
 
   const handleSearchQuery = () => {
+    // function to handle search query
     if (value === " " || value === "") {
       return;
     }
@@ -45,36 +46,53 @@ function Main(props) {
   //-------------------------------------------------------->
   //state and function  for filter values
 
-  //find by gender
+  let [filterSearch, setFilterSearch] = useState(false); //boolean state for storing the global data  or not
 
-  let [filterSearch, setFilterSearch] = useState(false);
+  let [filterState, setFilterState] = useState([]); // state to store global data and filter it locally
 
-  let [filterState, setFilterState] = useState([]);
-
-  let [activeFilter, setActiveFilter] = useState([]);
+  let [activeFilter, setActiveFilter] = useState([]); //state of active filters list
 
   const onFilterChange = (filter) => {
+    setLoading((loading = true));
+
+    // function to implement filter change
     if (filterSearch != true) {
       setFilterSearch((filterSearch = true));
     }
 
+    //taking input of discount radio button
+    //delete unchecked values and add present value only
     if (filter.type === "discount") {
       let newFilter = activeFilter.filter((elem) => elem.type != "discount");
       newFilter = [...newFilter, filter];
       setActiveFilter((activeFilter = newFilter));
-      console.log(filterByQuery(activeFilter, props.data[0]));
       setFilterState(
         (filterState = filterByQuery(activeFilter, props.data[0]))
       );
+      setTimeout(() => {
+        setLoading((loading = false));
+      }, 250);
+      return;
+    }
+    //delete unchecked values and add present value only
+    if (filter.type === "gender") {
+      let newFilter = activeFilter.filter((elem) => elem.type != "gender");
+      newFilter = [...newFilter, filter];
+      setActiveFilter((activeFilter = newFilter));
+      setFilterState(
+        (filterState = filterByQuery(activeFilter, props.data[0]))
+      );
+      setTimeout(() => {
+        setLoading((loading = false));
+      }, 250);
 
       return;
     }
-
+    //remove filter from activefilter on unchecking filter checkbox
     for (let i of activeFilter) {
       if (i.id === filter.id) {
         let newFilter = activeFilter.filter((elem) => elem.id != filter.id);
         setActiveFilter((activeFilter = newFilter));
-
         if (activeFilter.length === 0) {
           setFilterState((filterState = props.data[0]));
           setFilterSearch((filterSearch = false));
@@ -84,21 +102,37 @@ function Main(props) {
           (filterState = filterByQuery(activeFilter, props.data[0]))
         );
 
+        if (filterState.length === 0 && filterSearch === true) {
+          toast.error("Sorry! We don't have it right now");
+        }
+        setTimeout(() => {
+          setLoading((loading = false));
+        }, 250);
+
         return;
       }
     }
 
+    //add filter to activefilter on checking filter checkbox
+
     setActiveFilter((activeFilter = [...activeFilter, filter]));
 
     setFilterState((filterState = filterByQuery(activeFilter, props.data[0])));
+    setTimeout(() => {
+      setLoading((loading = false));
+    }, 250);
+
+    if (filterState.length === 0 && filterSearch === true) {
+      toast.error("Sorry! We dont have it right now");
+    }
   };
 
   // mobile filter
 
   //Filter By Gender
   let [gender, setGender] = useState();
+
   const handleGenderSearch = (event) => {
-    console.log(event.target.value);
     setLoading((loading = true));
     setGender((gender = event.target.value));
     let data = sortByGender(gender, fetchProducts());
@@ -109,6 +143,8 @@ function Main(props) {
   };
   //----------------------------------------------------------->
 
+  //function to handle show/hide filter sidepanel *Mobile View*
+
   const handleShowFilter = () => {
     document.getElementById("aside").style.transform = "translateX(0vw)";
     document.getElementById("touch-close").addEventListener("click", () => {
@@ -116,18 +152,28 @@ function Main(props) {
     });
   };
 
+  //function to handle show/hide similar sidepanel
+
   const handleShowSimilar = (id) => {
     setProdId((prodId = id));
     setView((prev) => !prev);
   };
-
+  // close similar panel
   const closeShowSm = () => {
     setView((view = false));
   };
 
+  //<--------------------------------------------------------------->
+
+  //SORT MENU IMPLEMENTATION
+
+  //function to handle show/hide sort menu
+
   const handleShowSortMenuD = () => {
     setShowSortMenuD((prev) => !prev);
   };
+
+  //handle sort value
 
   const handleSortValue = (event) => {
     setSortValue((sortValue = event.target.value));
@@ -168,6 +214,8 @@ function Main(props) {
     }, 50);
   };
 
+  //<----------------------------------------------------
+
   return (
     <>
       <Toaster position="top-center" />
@@ -175,74 +223,11 @@ function Main(props) {
         <div className="aside" id="aside">
           <div className="aside-wrapper">
             <div className="d-filters-header">
-              <h1
-                style={{
-                  fontSize: "1rem",
-                  height: "6%",
-                  paddingTop: "20px",
-                  marginBottom: "20px",
-                }}
-              >
-                Category
-              </h1>
-            </div>
-            {/* filter by gender  */}
-            <ul className="d-filter">
-              <li style={{ fontWeight: "600" }}>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="Men"
-                  onChange={(e) => {
-                    handleGenderSearch(e);
-                  }}
-                ></input>
-                <label htmlFor="gender">Men</label>
-              </li>
-              <li style={{ fontWeight: "600" }}>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="Women"
-                  onChange={(e) => {
-                    handleGenderSearch(e);
-                  }}
-                ></input>
-                <label htmlFor="gender">Women</label>
-              </li>
-              <li style={{ fontWeight: "600" }}>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="Boys"
-                  onChange={(e) => {
-                    handleGenderSearch(e);
-                  }}
-                ></input>
-                <label htmlFor="gender">Boys</label>
-              </li>
-              <li style={{ fontWeight: "600" }}>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="Girls"
-                  onChange={(e) => {
-                    handleGenderSearch(e);
-                  }}
-                ></input>
-                <label htmlFor="gender">Girls</label>
-              </li>
-            </ul>{" "}
-            <hr
-              style={{
-                marginTop: "10px",
-                marginLeft: "10%",
-                background: "black",
-              }}
-            />
-            <div className="d-filters-header">
               <h1>Filters</h1>
               <h6
+                style={{
+                  cursor: "pointer",
+                }}
                 onClick={() => {
                   setActiveFilter((activeFilter = []));
                   setFilterState((filterState = props.data[0]));
@@ -252,6 +237,34 @@ function Main(props) {
                 Clear all
               </h6>
             </div>
+            {/* filter by gender  */}
+            <ul className="d-filter">
+              <h2>Gender</h2>
+              {filterList.map((elem) => {
+                return elem.type === "gender" ? (
+                  <li>
+                    <input
+                      name="gender"
+                      type="radio"
+                      value={JSON.stringify(elem)}
+                      id={elem.id}
+                      checked={activeFilter.some(
+                        (element) => elem.id === element.id
+                      )}
+                      onChange={() => onFilterChange(elem)}
+                    />
+                    <label htmlFor={elem.id}>{elem.value}</label>
+                  </li>
+                ) : null;
+              })}
+            </ul>
+            <hr
+              style={{
+                marginTop: "10px",
+                marginLeft: "10%",
+                background: "black",
+              }}
+            />
             {/* filter by price  */}
             <ul className="d-filter">
               <h2>Price</h2>
@@ -358,6 +371,10 @@ function Main(props) {
             }}
             onClick={() => {
               setValue((value = ""));
+              setActiveFilter((activeFilter = []));
+              setFilterState((filterState = props.data[0]));
+              setFilterSearch((filterSearch = false));
+
               props.data[1](fetchProducts());
             }}
           >
@@ -365,6 +382,9 @@ function Main(props) {
           </div>
           <div className="asdfas">
             <h2>Shirts</h2>
+            {props.data[2] ? (
+              <h2 style={{ marginLeft: "10px" }}>{`for ${props.data[2]}`}</h2>
+            ) : null}
           </div>
           <div className="sort-filter-bar">
             <div
@@ -377,6 +397,7 @@ function Main(props) {
             </div>
             <div
               className="sort-filter-btn"
+              style={{ cursor: "pointer" }}
               onClick={() => {
                 handleShowSortMenuD();
               }}
@@ -479,7 +500,6 @@ function Main(props) {
           </div>
 
           {/* products display */}
-          {console.log(filterSearch, "filterSearch")}
           {loading ? (
             <Loader />
           ) : (

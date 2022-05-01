@@ -140,6 +140,7 @@ function ProductPage(props) {
                     <img
                       src={elem.src}
                       alt={elem.view}
+                      style={{ cursor: "pointer" }}
                       onClick={() => {
                         handleViewImage(true, elem.src);
                       }}
@@ -290,6 +291,8 @@ function ProductPage(props) {
                           cursor: "pointer",
                           border: "solid 2px orange",
                           borderRadius: "50%",
+                          fontWeight: "700",
+
                           cursor: "pointer",
                           display: "flex",
                           fontSize: "10px",

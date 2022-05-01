@@ -9,8 +9,12 @@ import { fetchProducts } from "../utilities"; //function to fetch products from 
 
 function App() {
   let [data, setData] = useState(fetchProducts());
-  const handleData = (input) => {
+  let [gender, setGender] = useState();
+  const handleData = (input, gender_in) => {
     setData((data = input));
+    if (gender_in) {
+      setGender((gender = gender_in));
+    }
   };
 
   return (
@@ -18,7 +22,10 @@ function App() {
       <BrowserRouter>
         <Navbar data={handleData} />
         <Routes>
-          <Route path="/" element={<Main data={[data, handleData]} />}></Route>
+          <Route
+            path="/"
+            element={<Main data={[data, handleData, gender]} />}
+          ></Route>
           <Route path="/product/:id" element={<ProductPage />}></Route>
           <Route path="/wishlist/product/:id" element={<ProductPage />}></Route>
           <Route path="/wishlist" element={<Wishlist />}></Route>

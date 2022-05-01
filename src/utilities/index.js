@@ -11,7 +11,7 @@ export function filterByQuery(filterArray, list) {
   let discountArray = filterArray.filter((elem) => elem.type === "discount");
   let colorArray = filterArray.filter((elem) => elem.type === "color");
   let priceArray = filterArray.filter((elem) => elem.type === "price");
-
+  let genderArray = filterArray.filter((elem) => elem.type === "gender");
   let outputArray = [];
   if (discountArray.length != 0) {
     outputArray = sortByDiscount(discountArray[0].value, list);
@@ -29,6 +29,14 @@ export function filterByQuery(filterArray, list) {
       outputArray = searchByPrice(priceArray, outputArray);
     } else {
       outputArray = searchByPrice(priceArray, list);
+    }
+  }
+
+  if (genderArray.length != 0) {
+    if (outputArray.length != 0) {
+      outputArray = sortByGender(genderArray[0].value, outputArray);
+    } else {
+      outputArray = sortByGender(genderArray[0].value, list);
     }
   }
 

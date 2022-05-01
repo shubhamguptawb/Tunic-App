@@ -37,7 +37,7 @@ function LightBox(props) {
       <div className="img-thumb">
         {newImageArray.map((elem) => {
           return (
-            <div className="thumb-container">
+            <div className="thumb-container" style={{ cursor: "pointer" }}>
               <img
                 src={elem.src}
                 onClick={() => {
@@ -58,6 +58,7 @@ function LightBox(props) {
       {/* Close button for image container */}
       <div
         className="close-btn"
+        style={{ cursor: "pointer" }}
         onClick={() => {
           props.data[2](false, "");
         }}

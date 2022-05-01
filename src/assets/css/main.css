@@ -220,9 +220,6 @@
   width: 0;
 }
 
-.wishlist-wrapper ::-webkit-scrollbar {
-  visibility: hidden;
-}
 @media screen and (max-width: 900px) and (min-width: 300px) {
   .main {
     overflow-y: scroll;
