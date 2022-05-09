@@ -228,6 +228,9 @@ function Main(props) {
                 style={{
                   cursor: "pointer",
                 }}
+                data-toggle="tooltip"
+                data-placement="right"
+                title="Clear all Filters"
                 onClick={() => {
                   setActiveFilter((activeFilter = []));
                   setFilterState((filterState = props.data[0]));

@@ -198,41 +198,12 @@ export const filterList = [
 //search implementation function
 
 export function searchHelper(input, list) {
+
   let resultArray = [];
-  input = "_" + input + "_";
-  const findCommon = (str1, str2) => {
-    let str1Index = 0;
-    let str2Index = 0;
-    while (str1Index != str1.length) {
-      while (str2Index < str2.length) {
-        if (str2[str2Index] === str1[str1Index]) {
-          str2Index++;
-          str1Index++;
-          if (str2[str2Index] != str1[str1Index]) {
-            str1Index = 0;
-          }
-        } else {
-          str2Index++;
-        }
-
-        if (str2Index === str2.length) {
-          return false;
-        }
-
-        if (str1Index == str1.length - 1) {
-          return true;
-        }
-      }
-    }
-    return false;
-  };
-  list.map((element) => {
+   list.map((element) => {
     let res =
-      "_" + element.productName.replace(/\s+/g, "_").toLowerCase() + "_";
-
-    let a = findCommon(input, res);
-
-    if (a) {
+         element.productName.toLowerCase();
+    if (res.includes(input)) {
       resultArray.push(element);
     }
   });

@@ -54,6 +54,9 @@ function Navbar(props) {
       <div className="logo-header">
         <Link
           to="/"
+          data-toggle="tooltip"
+          data-placement="bottom"
+          title="Home"
           className="logo-name"
           style={{
             display: "flex",
@@ -75,6 +78,9 @@ function Navbar(props) {
         <div className="header-menu">
           <ul className="header-menu-ul">
             <li
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Men's Shirts"
               style={{ cursor: "pointer" }}
               onClick={() => {
                 handleGenderSearch("Men");
@@ -83,6 +89,9 @@ function Navbar(props) {
               Men
             </li>
             <li
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Women's Shirts"
               style={{ cursor: "pointer" }}
               onClick={() => {
                 handleGenderSearch("Women");
@@ -91,6 +100,9 @@ function Navbar(props) {
               Women
             </li>
             <li
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Boys Shirts"
               style={{ cursor: "pointer" }}
               onClick={() => {
                 handleGenderSearch("Boys");
@@ -99,6 +111,9 @@ function Navbar(props) {
               Boys
             </li>
             <li
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Girls Shirts"
               style={{ cursor: "pointer" }}
               onClick={() => {
                 handleGenderSearch("Girls");
@@ -117,7 +132,12 @@ function Navbar(props) {
           </ul>
         </div>
 
-        <div className="search-bar">
+        <div
+          className="search-bar"
+          data-toggle="tooltip"
+          data-placement="right"
+          title="Search and press Enter"
+        >
           <input
             type="text"
             value={value}
@@ -154,7 +174,12 @@ function Navbar(props) {
           )}
         </div>
 
-        <div className="wishlist-btn-d">
+        <div
+          className="wishlist-btn-d"
+          data-toggle="tooltip"
+          data-placement="bottom"
+          title="My Wishlist"
+        >
           <Link
             to="/wishlist"
             style={{
@@ -169,6 +194,9 @@ function Navbar(props) {
 
         <div
           className="cart-icon"
+          data-toggle="tooltip"
+          data-placement="bottom"
+          title="Cart"
           onClick={() => {
             handleShowCart();
           }}
