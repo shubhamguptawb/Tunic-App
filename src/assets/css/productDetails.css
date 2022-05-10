@@ -10,7 +10,7 @@ input[type="radio"]:checked + label:before {
 }
 
 .product-page-wrapper {
-  height: 100vh;
+  height: 120vh;
   width: 100vw;
   overflow: hidden;
 }
@@ -65,7 +65,7 @@ input:focus {
   overflow-x: hidden;
   overflow-y: scroll;
   display: flex;
-  height: 100vh;
+  height: 110vh;
 }
 
 @media screen and (max-width: 900px) and (min-width: 300px) {
@@ -75,7 +75,7 @@ input:focus {
     overflow-x: hidden;
     overflow-y: scroll;
     display: flex;
-    height: 100vh;
+    height: 88vh;
     flex-direction: column;
   }
 

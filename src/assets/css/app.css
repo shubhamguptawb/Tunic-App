@@ -8,13 +8,14 @@ html {
   width: 100vw;
 }
 #root {
+  overflow: hidden;
   height: 100%;
   width: 100%;
 }
 body {
-  height: 160vh;
+  overflow-x: hidden;
+  height: 130vh;
   width: 100%;
-  overflow: hidden;
 }
 
 @media screen and (max-width: 900px) and (min-width: 300px) {
